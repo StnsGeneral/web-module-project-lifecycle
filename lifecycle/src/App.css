@@ -18,3 +18,7 @@ a {
   text-decoration: none;
   color: aliceblue;
 }
+
+p {
+  font-weight: bold;
+}
