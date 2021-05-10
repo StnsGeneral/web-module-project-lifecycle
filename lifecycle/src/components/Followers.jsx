@@ -8,7 +8,9 @@ class Followers extends React.Component {
         {this.props.followers.map((follower) => {
           return (
             <div key={follower.login} className="follower">
-              <h4>{follower.login}</h4>
+              <h4>
+                <a href={follower.html_url}>{follower.login}</a>
+              </h4>
               <img src={follower.avatar_url} alt="" />
             </div>
           );

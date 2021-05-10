@@ -5,7 +5,10 @@ class User extends React.Component {
   render() {
     return (
       <div className="user">
-        <h2>Current username you are looking at is: {this.props.user.login}</h2>
+        <h2>
+          Current username you are looking at is:{' '}
+          <a href={this.props.user.html_url}>{this.props.user.login}</a>
+        </h2>
         <Followers followers={this.props.followers} />
       </div>
     );

@@ -7,6 +7,7 @@ class App extends React.Component {
     username: 'StnsGeneral',
     user: [],
     followers: [],
+    search: '',
   };
 
   componentDidMount() {
@@ -21,39 +22,35 @@ class App extends React.Component {
       .catch((err) => console.error('followers get error', err));
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.username !== this.state.username) {
-      axios
-        .get(`https://api.github.com/users/${this.state.username}`)
-        .then((res) => this.setState({ user: res.data }))
-        .catch((err) => console.error('user get error', err));
-
-      axios
-        .get(`https://api.github.com/users/${this.state.username}/followers`)
-        .then((res) => this.setState({ followers: res.data }))
-        .catch((err) => console.error('followers get error', err));
-    }
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
+    axios
+      .get(`https://api.github.com/users/${this.state.search}`)
+      .then((res) => this.setState({ user: res.data }))
+      .catch((err) => console.error('user get error', err));
+
+    axios
+      .get(`https://api.github.com/users/${this.state.search}/followers`)
+      .then((res) => this.setState({ followers: res.data }))
+      .catch((err) => console.error('followers get error', err));
   };
 
   handleChange = (e) => {
-    this.setState({ username: e.target.value });
+    this.setState({ search: e.target.value });
   };
 
   render() {
     return (
       <div className="App">
-        <span>Start typing a username</span>
+        <span>Use this input to search for a Github Username.</span>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             placeholder="Enter a GitHub username"
-            value={this.state.username}
+            value={this.state.search}
             onChange={this.handleChange}
           />
+          <button>Submit</button>
         </form>
 
         <h1>This is a page about for Github profiles.</h1>
