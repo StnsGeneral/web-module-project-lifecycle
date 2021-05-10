@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  height: 100px;
+}
+
+body {
+  background-color: chocolate;
+}
+
+a {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+p {
+  font-weight: bold;
+}
